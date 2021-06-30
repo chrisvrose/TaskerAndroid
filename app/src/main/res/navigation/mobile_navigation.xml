@@ -11,14 +11,21 @@
         android:label="My Home"
         tools:layout="@layout/fragment_home">
 
+        <action
+            android:id="@+id/action_nav_home_to_nav_messages"
+            app:destination="@id/nav_profile" />
     </fragment>
 
 
     <fragment
-        android:id="@+id/nav_messages"
-        android:name="in.aravindweb.tasker.ui.message.MessageFragment"
+        android:id="@+id/nav_profile"
+        android:name="in.aravindweb.tasker.ProfileFragment"
         android:label="Messages"
-        tools:layout="@layout/fragment_messages" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_messages_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 <!--    <fragment-->
 <!--        android:id="@+id/nav_admin"-->

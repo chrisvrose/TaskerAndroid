@@ -73,10 +73,10 @@ public class CourseFragment extends AppCompatActivity implements View.OnClickLis
 //    private LinearLayout streamLinearLayout;
 //
 //
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_course);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_course);
 //        this.announcementCards = new ArrayList<CardView>();
 //        this.assignmentCards = new ArrayList<CardView>();
 //        this.postCards = new ArrayList<CardView>();
@@ -151,7 +151,7 @@ public class CourseFragment extends AppCompatActivity implements View.OnClickLis
 //        else{
 //            finish();
 //        }
-//    }
+    }
 //
     @Override
     public void onClick(View v) {

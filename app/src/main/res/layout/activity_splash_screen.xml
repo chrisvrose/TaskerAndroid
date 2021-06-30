@@ -7,9 +7,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/ic_launcher_foreground"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/android_chrome_512"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="120dp"

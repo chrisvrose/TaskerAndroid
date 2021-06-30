@@ -1,6 +1,8 @@
 package in.aravindweb.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.TypedValue;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -40,5 +42,10 @@ public class misc {
      */
     public static void Glider(Context c, String uri, ImageView v){
         Glide.with(c).load(uri).into(v);
+    }
+
+
+    public static int DPtoPX(int dps, Activity activity){
+        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dps, activity.getResources().getDisplayMetrics()));
     }
 }
