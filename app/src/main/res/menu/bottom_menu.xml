@@ -6,7 +6,7 @@
         <item
             android:id="@+id/navigation_stream"
             android:icon="@drawable/ic_stream"
-            android:title="Stream"/>
+            android:title="Students"/>
         <item
             android:id="@+id/navigation_announcements"
             android:icon="@drawable/ic_announcement_svgrepo_com"
@@ -14,6 +14,10 @@
         <item
             android:icon="@drawable/ic_assignment_icon"
             android:id="@+id/navigation_assignments"
-            android:title="Assignments"/>
+            android:title="Materials"/>
+        <item
+            android:icon="@drawable/ic_knowledge"
+            android:id="@+id/navigation_materials"
+            android:title="Materials"/>
     </group>
 </menu>
