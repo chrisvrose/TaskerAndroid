@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         this.drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home /*R.id.nav_messages*//*, R.id.nav_admin*/)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home)
                 .setDrawerLayout(drawerLayout)
                 .build();
 
