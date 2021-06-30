@@ -26,24 +26,21 @@
             <item name="colorControlHighlight">#1D45C0</item>
         </style>
 
-        <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+<!--    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">-->
 
-        </style>
+<!--    </style>-->
 
-        <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-            <item name="windowNoTitle">true</item>
-            <item name="windowActionBar">false</item>
-            <item name="colorPrimary">@color/colorPrimary</item>
-            <item name="android:statusBarColor">@android:color/white</item>
-            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-            <item name="colorAccent">@color/colorAccent</item>
-            <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        </style>
+<!--    <style name="MyMaterialTheme.Base" parent="Theme.TaskerAndroid">-->
+<!--&lt;!&ndash;        <item name="windowNoTitle">true</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="windowActionBar">false</item>&ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="android:statusBarColor">@android:color/white</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+<!--    </style>-->
 
-        <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
-            <item name="spinBars">true</item>
-            <item name="color">@android:color/black</item>
-        </style>
+
 
         <style name="fontForCourseNameOnCard">
             <item name="android:fontFamily">sans-serif</item>
@@ -111,8 +108,8 @@
             <item name="android:textColor">#000000</item>
         </style>
 
-        fontForDisplayNameOnComment
         <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
             <item name="colorAccent">#1D45C0</item>
         </style>
+
 </resources>
