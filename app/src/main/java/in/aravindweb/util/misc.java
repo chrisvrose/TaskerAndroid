@@ -1,6 +1,11 @@
-package in.aravindweb;
+package in.aravindweb.util;
 
-public class util {
+import android.content.Context;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
+public class misc {
     /**
      * Return two if one is non-null
      * @param one Anything
@@ -25,5 +30,15 @@ public class util {
 
         }
         return null;
+    }
+
+    /**
+     * Shortcut to using Glide
+     * @param c context
+     * @param uri uri string
+     * @param v target
+     */
+    public static void Glider(Context c, String uri, ImageView v){
+        Glide.with(c).load(uri).into(v);
     }
 }
