@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +37,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+
+    public void register(View v){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void signWithCredentials(){
@@ -70,36 +77,36 @@ public class LoginActivity extends AppCompatActivity {
                 .addJSONObjectBody(jsonObject)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String token = response.getString("token");
-                    Log.d("res.login.done",token);
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String token = response.getString("token");
+                            Log.d("res.login.done",token);
 
 
-                    SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.tokenLocation),Context.MODE_PRIVATE);
+                            SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.tokenLocation),Context.MODE_PRIVATE);
 
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("token",token);
-                    editor.apply();
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("token",token);
+                            editor.apply();
 
-                    launchMainActivity();
+                            launchMainActivity();
 
-                } catch (JSONException e) {
-                    Log.d("res.login.parse.error",response.toString());
-                    forError();
+                        } catch (JSONException e) {
+                            Log.d("res.login.parse.error",response.toString());
+                            forError();
 
-                    e.printStackTrace();
-                }
+                            e.printStackTrace();
+                        }
 
-            }
+                    }
 
-            @Override
-            public void onError(ANError anError) {
-                Log.d("res.login.error",""+anError.getErrorCode());
-                forError();
-            }
-        });
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d("res.login.error",""+anError.getErrorCode());
+                        forError();
+                    }
+                });
 
     }
 

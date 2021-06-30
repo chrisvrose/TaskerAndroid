@@ -16,8 +16,8 @@
     <string name="redirectRegister">Don\'t have an account?</string>
     <string name="redirectLogin">Have an account?</string>
     <string name="signUpMessage">Sign Up - Tasker</string>
-    <string name="firstNameHint">First Name</string>
-    <string name="lastNameHint">Last Name</string>
+    <string name="nameHint">Name</string>
+    <string name="phoneHint">Phone</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
