@@ -12,14 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskerAndroid">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".ui.course.CourseFragment">
-
-        </activity>
-
+        <activity android:name=".ui.course.CourseFragment"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

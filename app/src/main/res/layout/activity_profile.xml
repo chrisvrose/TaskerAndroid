@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
-
+    tools:context=".ProfileActivity">
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="200dp"
@@ -57,7 +56,7 @@
         android:hint="@string/phone_number" android:gravity="center"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitbutton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -68,13 +67,12 @@
         />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/deleteaccount"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/delete_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
+        app:layout_constraintTop_toBottomOf="@+id/submitbutton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
