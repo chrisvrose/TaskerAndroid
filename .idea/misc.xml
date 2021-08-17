@@ -11,13 +11,23 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.17274569402228976" />
+        <entry key="app/src/main/res/layout/fragment_announcement.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_assignment.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/layout/fragment_assignment_list.xml" value="0.17274569402228976" />
+        <entry key="app/src/main/res/layout/fragment_assignmentlink_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_assignmentlink_listing.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_comment.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/layout/fragment_course.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_material.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_material_list.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/fragment_material_listing.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_student.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/fragment_student_list.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/fragment_student_listing.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.1" />
       </map>
     </option>

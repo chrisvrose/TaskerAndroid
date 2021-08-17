@@ -114,6 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                     SharedPreferences.Editor editor = sharedPref.edit();
                                     editor.putString("token",token);
+                                    editor.putBoolean("isTeacher", isTeacher);
                                     editor.apply();
 
                                     launchMainActivity();

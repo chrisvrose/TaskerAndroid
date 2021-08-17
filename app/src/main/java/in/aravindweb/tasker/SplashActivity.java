@@ -28,7 +28,6 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         String token = sharedPref.getString("token","-");
         AndroidNetworking.get("https://tasker.aravindweb.in/api/auth/")
-                .setTag("test")
                 .addHeaders("X-Auth-Token",token)
                 .build()
                 .getAsString(new StringRequestListener() {

@@ -1,4 +1,4 @@
-package in.aravindweb.tasker.placeholder;
+package in.aravindweb.tasker.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,17 +11,17 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class PlaceholderContent {
+public class MaterialData {
 
     /**
      * An array of sample (placeholder) items.
      */
-    public static final List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
+    public static final List<MaterialItem> ITEMS = new ArrayList<MaterialItem>();
 
     /**
      * A map of sample (placeholder) items, by ID.
      */
-    public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
+    public static final Map<String, MaterialItem> ITEM_MAP = new HashMap<String, MaterialItem>();
 
     private static final int COUNT = 25;
 
@@ -32,13 +32,13 @@ public class PlaceholderContent {
         }
     }
 
-    private static void addItem(PlaceholderItem item) {
+    private static void addItem(MaterialItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static PlaceholderItem createPlaceholderItem(int position) {
-        return new PlaceholderItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    private static MaterialItem createPlaceholderItem(int position) {
+        return new MaterialItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -53,15 +53,15 @@ public class PlaceholderContent {
     /**
      * A placeholder item representing a piece of content.
      */
-    public static class PlaceholderItem {
+    public static class MaterialItem {
         public final String id;
         public final String content;
-        public final String date;
+        public final String details;
 
-        public PlaceholderItem(String id, String content, String date) {
+        public MaterialItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
-            this.date = date;
+            this.details = details;
         }
 
         @Override

@@ -1,6 +1,8 @@
 package in.aravindweb.tasker;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -10,18 +12,23 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +64,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        final LinearLayout lineaScrollLayout = (LinearLayout) v.findViewById(R.id.scroll_view_linear_layout);
+        final LinearLayout linearScrollLayout = (LinearLayout) v.findViewById(R.id.scroll_view_linear_layout);
 //        ((Button)v.findViewById(R.id.button)).setOnClickListener(x->{
 //            Toast.makeText(getContext(), "NO", Toast.LENGTH_SHORT).show();
 //        });
@@ -65,16 +72,137 @@ public class HomeFragment extends Fragment {
 
         SharedPreferences sharedPref = getContext().getSharedPreferences(getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         String token = sharedPref.getString("token", "-");
+        boolean isTeacher = sharedPref.getBoolean("isTeacher",false);
+        FloatingActionButton fb =v.findViewById(R.id.floatingActionButton);
 
+        if(isTeacher){
+//             v.findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
+            // create classroom
+            fb.setOnClickListener(myview->{
+//                something has to pop up for email
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Create class");
+
+// Set up the input
+                final EditText input = new EditText(getContext());
+                input.setHint("Enter Class Name");
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT );
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String m_Text = input.getText().toString();
+                        // invite_id
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("className", m_Text);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        AndroidNetworking.post("https://tasker.aravindweb.in/api/rooms").addHeaders("X-Auth-Token", token)
+                                .addJSONObjectBody(jsonObject)
+                                .build().getAsString(new StringRequestListener() {
+                            @Override
+                            public void onResponse(String response) {
+                                linearScrollLayout.removeAllViews();
+                                getAllCourses(token,linearScrollLayout);
+                                Toast.makeText(getContext(), "Invite code worked!", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                                Toast.makeText(getContext(), anError.getErrorCode() + " Error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            });
+        }else{
+            fb.setOnClickListener(myview->{
+//                something has to pop up for email
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Join class");
+
+// Set up the input
+                final EditText input = new EditText(getContext());
+                input.setHint("Enter Invite Code");
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT );
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String m_Text = input.getText().toString();
+                        // invite_id
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("invite_id", m_Text);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        AndroidNetworking.post("https://tasker.aravindweb.in/api/rooms/students/join").addHeaders("X-Auth-Token", token)
+                                .addJSONObjectBody(jsonObject)
+                                .build().getAsString(new StringRequestListener() {
+                            @Override
+                            public void onResponse(String response) {
+                                linearScrollLayout.removeAllViews();
+                                getAllCourses(token,linearScrollLayout);
+                                Toast.makeText(getContext(), "Invite code worked!", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                                Toast.makeText(getContext(), anError.getErrorCode() + " Error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            });
+        }
+
+
+        // image list mapping
         Integer[] list = new Integer[]{R.drawable.img_code, R.drawable.img_backtoschool, R.drawable.img_bookclub, R.drawable.img_breakfast,
                 R.drawable.img_graduation, R.drawable.img_honors, R.drawable.img_reachout};
         l = new ArrayList<Integer>();
 //        int
         l.addAll(Arrays.asList(list));
-//        l.add(R.drawable.img_code);l.add(R.drawable.img_backtoschool);l.add(R.drawable.img_bookclub);
-//        l.add(R.drawable.img_breakfast);
-//        l.addAll(R.drawable.img_code)
 
+        // start drawing all the tables
+        getAllCourses(token,linearScrollLayout);
+
+        // /api/rooms
+        return v;
+    }
+
+    private void getAllCourses(String token,LinearLayout linearLayout){
         AndroidNetworking.get("https://tasker.aravindweb.in/api/rooms").addHeaders("X-Auth-Token", token).build().getAsJSONArray(new JSONArrayRequestListener() {
             @Override
             public void onResponse(JSONArray response) {
@@ -85,7 +213,7 @@ public class HomeFragment extends Fragment {
                         Log.d("res.someClass", j.toString());
                         String className = j.getString("className");
                         String classId = j.getString("_id");
-                        drawCourse(lineaScrollLayout, className,classId);
+                        drawCourse(linearLayout, className,classId);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -97,10 +225,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        // /api/rooms
-        return v;
     }
-
 
     private void drawCourse(LinearLayout scroll, String className,String classId) {
 

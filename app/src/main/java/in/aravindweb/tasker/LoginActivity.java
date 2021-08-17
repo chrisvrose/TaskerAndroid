@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,14 +84,42 @@ public class LoginActivity extends AppCompatActivity {
                             String token = response.getString("token");
                             Log.d("res.login.done",token);
 
+                            AndroidNetworking.get("https://tasker.aravindweb.in/api/auth/")
+                                    .addHeaders("X-Auth-Token",token)
+                                    .build()
+                                    .getAsJSONObject(new JSONObjectRequestListener() {
+                                        @Override
+                                        public void onResponse(JSONObject j) {
 
-                            SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.tokenLocation),Context.MODE_PRIVATE);
+                                            SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.tokenLocation),Context.MODE_PRIVATE);
 
-                            SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("token",token);
-                            editor.apply();
+                                            try {
+                                                SharedPreferences.Editor editor = sharedPref.edit();
 
-                            launchMainActivity();
+                                                editor.putString("token",token);
+
+                                                editor.putBoolean("isTeacher",j.getBoolean("isTeacher"));
+                                                Log.d("isTeacher",String.valueOf( j.getBoolean("isTeacher")));
+                                                editor.apply();
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            launchMainActivity();
+                                        }
+
+                                        @Override
+                                        public void onError(ANError anError) {
+                                            Log.d("res.login.parse.error",response.toString());
+                                            forError();
+
+                                            anError.printStackTrace();
+                                        }
+                                    });
+
+
+
 
                         } catch (JSONException e) {
                             Log.d("res.login.parse.error",response.toString());
