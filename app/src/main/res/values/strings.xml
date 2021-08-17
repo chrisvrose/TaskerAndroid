@@ -27,7 +27,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
-    <string name="courseSection">Course Section</string>
+    <string name="courseSection">Course Name</string>
     <string name="courseCode">Course Code</string>
     <string name="default_web_client_id">Course Code</string>
     <string name="tokenLocation">in.aravindweb.tasker.prefs</string>
