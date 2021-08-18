@@ -47,7 +47,7 @@ public class MaterialFragment extends Fragment {
     private String courseName = "", courseId = "";
 
     private Uri filePickedUriuri = null;
-
+    MaterialRecyclerViewAdapter mva;
     private static int PICKFILE_RESULT_CODE = 25;
 
     /**
@@ -94,7 +94,7 @@ public class MaterialFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MaterialRecyclerViewAdapter(
+        recyclerView.setAdapter(mva = new MaterialRecyclerViewAdapter(
                 //laceholderContent.ITEMS
                 getContext(), courseId
         ));
@@ -156,6 +156,7 @@ public class MaterialFragment extends Fragment {
                                 public void onResponse(String response) {
                                     Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
                                     tempFile.deleteOnExit();
+                                    mva.makeData();
                                 }
 
                                 @Override
