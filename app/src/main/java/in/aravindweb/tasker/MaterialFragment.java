@@ -146,7 +146,7 @@ public class MaterialFragment extends Fragment {
                             }
                             ss.close();
                             AndroidNetworking
-                                    .upload("https://tasker.aravindweb.in/api/upload/60dc9411a7135f005d218ebc/materials")
+                                    .upload("https://tasker.aravindweb.in/api/upload/"+courseId+"/materials")
                                     .addMultipartFile("file", tempFile)
 
                                     .addHeaders("description", input.getText().toString())

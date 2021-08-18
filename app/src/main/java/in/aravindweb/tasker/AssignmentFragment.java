@@ -140,7 +140,7 @@ public class AssignmentFragment extends Fragment {
                             }
                             ss.close();
                             AndroidNetworking
-                                    .upload("https://tasker.aravindweb.in/api/upload/60dc9411a7135f005d218ebc")
+                                    .upload("https://tasker.aravindweb.in/api/upload/"+courseId)
                                     .addMultipartFile("file", tempFile)
 
                                     .addHeaders("description", input.getText().toString())
