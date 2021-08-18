@@ -132,6 +132,7 @@ public class MaterialFragment extends Fragment {
                     if (filePickedUri == null) {
                         Toast.makeText(getContext(), "Please pick a file", Toast.LENGTH_SHORT).show();
                     } else {
+                        // this is the worst, create a temp file, copy the IS into that file then upload it
                         try {
 //                            String path = FileUtils.getPath(getContext(),filePickedUriuri);
 //                            File file = new File(filePickedUriuri.toString());//FileUtils.getFile(getContext(), filePickedUriuri);
