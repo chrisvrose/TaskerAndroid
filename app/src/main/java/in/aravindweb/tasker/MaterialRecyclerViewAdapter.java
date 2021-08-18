@@ -3,10 +3,13 @@ package in.aravindweb.tasker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import in.aravindweb.tasker.data.MaterialData.MaterialItem;
@@ -96,7 +99,13 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).details);
-        holder.mContentView.setText(mValues.get(position).content);
+//        holder.mContentView.setText(mValues.get(position).content);
+        holder.mbutton.setOnClickListener(v->{
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mValues.get(position).content));
+            holder.mbutton.getContext().startActivity(browserIntent);
+
+        });
+
     }
 
     @Override
@@ -106,18 +115,20 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
-        public final TextView mContentView;
+//        public final TextView mContentView;
         public MaterialItem mItem;
+        public Button mbutton;
 
         public ViewHolder(FragmentMaterialBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
-            mContentView = binding.content;
+//            mContentView = binding.content;
+            mbutton = binding.button5;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mbutton.getText() + "'";
         }
     }
 }

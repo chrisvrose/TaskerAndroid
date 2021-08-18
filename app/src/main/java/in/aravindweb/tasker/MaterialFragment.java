@@ -46,7 +46,6 @@ public class MaterialFragment extends Fragment {
     private int mColumnCount = 1;
     private String courseName = "", courseId = "";
 
-    private String filePickedUri = null;
     private Uri filePickedUriuri = null;
 
     private static int PICKFILE_RESULT_CODE = 25;
@@ -129,7 +128,7 @@ public class MaterialFragment extends Fragment {
 
                 builder.setView(dialogLayout);
                 builder.setPositiveButton("UPLOAD", (dv, which) -> {
-                    if (filePickedUri == null) {
+                    if (filePickedUriuri == null) {
                         Toast.makeText(getContext(), "Please pick a file", Toast.LENGTH_SHORT).show();
                     } else {
                         // this is the worst, create a temp file, copy the IS into that file then upload it
@@ -240,7 +239,6 @@ public class MaterialFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICKFILE_RESULT_CODE) {
-            filePickedUri = data.getData().getPath();
             filePickedUriuri = data.getData();
 
         }

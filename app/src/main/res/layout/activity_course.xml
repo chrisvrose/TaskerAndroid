@@ -11,10 +11,16 @@
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="sdgvsdgsdgvsdgdsg" />
+        app:title="sdgvsdgsdgvsdgdsg"
+
+        android:elevation="2dp"
+        android:background="@color/white"
+        app:titleTextColor="@android:color/black"
+        app:popupTheme="@style/Theme.TaskerAndroid"
+
+        />
 
 <!--    <androidx.cardview.widget.CardView-->
 <!--        android:layout_width="match_parent"-->
@@ -84,7 +90,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="80dp"
         android:id="@+id/fragment_container"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         >
 
     </FrameLayout>

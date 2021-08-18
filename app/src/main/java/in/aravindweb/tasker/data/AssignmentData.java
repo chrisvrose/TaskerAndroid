@@ -25,20 +25,9 @@ public class AssignmentData {
 
     private static final int COUNT = 25;
 
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createPlaceholderItem(i));
-        }
-    }
-
     private static void addItem(AssignmentItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
-    }
-
-    private static AssignmentItem createPlaceholderItem(int position) {
-        return new AssignmentItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -55,18 +44,23 @@ public class AssignmentData {
      */
     public static class AssignmentItem {
         public final String id;
-        public final String content;
-        public final String details;
+        public final String createdAt;
+        public final String deadline;
+        
+        public final String resource;
+        public final String description;
 
-        public AssignmentItem(String id, String content, String details) {
+        public AssignmentItem(String id, String createdAt, String deadline,String resource, String description) {
             this.id = id;
-            this.content = content;
-            this.details = details;
+            this.createdAt = createdAt;
+            this.deadline = deadline;
+            this.resource = resource;
+            this.description = description;
         }
 
         @Override
         public String toString() {
-            return content;
+            return resource;
         }
     }
 }
