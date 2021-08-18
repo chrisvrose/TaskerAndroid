@@ -5,29 +5,22 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+//import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 //import com.example.cengonline.DatabaseCallback;
 //import com.example.cengonline.DatabaseUtility;
 import in.aravindweb.tasker.AnnouncementFragment;
+import in.aravindweb.tasker.AssignmentFragment;
 import in.aravindweb.tasker.MaterialFragment;
 import in.aravindweb.tasker.R;
 import in.aravindweb.tasker.StudentFragment;
-//import com.example.cengonline.Utility;
-//import com.example.cengonline.adt.SortedList;
-//import com.example.cengonline.model.Course;
-//import com.example.cengonline.model.CourseAnnouncements;
-//import com.example.cengonline.model.CourseAssignments;
-//import com.example.cengonline.model.CoursePosts;
-//import com.example.cengonline.model.User;
-//import com.example.cengonline.post.AbstractPost;
-//import com.example.cengonline.post.Announcement;
-//import com.example.cengonline.post.Assignment;
-//import com.example.cengonline.post.Post;
+
 //import in.aravindweb.tasker.ui.dialog.EditClassDialog;
 //import in.aravindweb.tasker.ui.dialog.NewAnnouncementDialog;
 //import in.aravindweb.tasker.ui.dialog.NewAssignmentDialog;
@@ -38,7 +31,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CourseActivity extends AppCompatActivity implements View.OnClickListener,  BottomNavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView b;
-    TextView courseName;
+    Toolbar courseName;
     Fragment f1 ;
     Fragment f2;
     Fragment f3;
@@ -56,6 +49,7 @@ public class CourseActivity extends AppCompatActivity implements View.OnClickLis
         Log.d("pain","it hurts");
         f1 = new StudentFragment(courseNameStr,courseIdStr);
         f2 = new AnnouncementFragment(courseNameStr,courseIdStr);
+        f3 = new AssignmentFragment(courseNameStr,courseIdStr);
         f4 = new MaterialFragment(courseNameStr,courseIdStr);
         fa=f1;
 
@@ -63,13 +57,17 @@ public class CourseActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_course);
         b = findViewById(R.id.bottom_navigation);
         b.setOnNavigationItemSelectedListener(this);
-        courseName = findViewById(R.id.course_fragment_course_name);
-        courseName.setText(courseNameStr);
+        courseName = findViewById(R.id.toolbar3/*course_fragment_course_name*/);
+        courseName.setTitle(courseNameStr);
+
+
+
         fm.beginTransaction()
                 .add(R.id.fragment_container,f1,"students")
                 .add(R.id.fragment_container,f2,"announcement")
+                .add(R.id.fragment_container,f3,"assignment")
                 .add(R.id.fragment_container,f4,"material")
-                .hide(f2).hide(f4)
+                .hide(f2).hide(f3).hide(f4)
                 .commit();
         // set to announcementPage
 
@@ -93,6 +91,7 @@ public class CourseActivity extends AppCompatActivity implements View.OnClickLis
                 return true;
             case R.id.navigation_assignments :
                 //toolbar.setTitle(getResources().getString(R.string.title_notifications));
+                fm.beginTransaction().hide(fa).show(f3).commit();fa=f3;
                 //loadFragment(new homeFragment());
                 return true;
             case R.id.navigation_materials :

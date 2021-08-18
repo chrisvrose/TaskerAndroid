@@ -91,53 +91,53 @@ public class MaterialFragment extends Fragment {
         boolean isTeacher = sharedPref.getBoolean("isTeacher",false);
 
         Button b = viewparent.findViewById(R.id.button2);
-        TextView tv = viewparent.findViewById(R.id.editTextTextMultiLine);
-        if(isTeacher) {
-            // teacher
-            tv.setHint("Student Email");
-
-            b.setOnClickListener(v -> {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    JSONArray x = new JSONArray();
-                    x.put(tv.getText().toString());
-                    jsonObject.put("studentEmails", x);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                // teacher wanting to add student
-                AndroidNetworking.post("https://tasker.aravindweb.in/api/rooms/" + courseId + "/students/invite").addHeaders("X-Auth-Token", token)
-                        .addJSONObjectBody(jsonObject)
-                        .build().getAsString(new StringRequestListener() {
-                    @Override
-                    public void onResponse(String response) {
-                        recyclerView.setAdapter(new StudentItemRecyclerViewAdapter(
-                                getContext(), courseId
-                        ));
-
-                        tv.setText("");
-                        Toast.makeText(context, "Invite Code Sent!", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        recyclerView.setAdapter(new StudentItemRecyclerViewAdapter(
-                                getContext(), courseId
-                        ));
-                        tv.setText("");
-
-                        Toast.makeText(context, anError.getErrorCode() + " Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            });
-        }else{
-            // student
-            b.setVisibility(View.GONE);
-            tv.setVisibility(View.GONE);
-
-        }
+//        TextView tv = viewparent.findViewById(R.id.editTextTextMultiLine);
+//        if(isTeacher) {
+//            // teacher
+////            tv.setHint("Student Email");
+//
+//            b.setOnClickListener(v -> {
+//                JSONObject jsonObject = new JSONObject();
+//                try {
+//                    JSONArray x = new JSONArray();
+//                    x.put(tv.getText().toString());
+//                    jsonObject.put("studentEmails", x);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                // teacher wanting to add student
+//                AndroidNetworking.post("https://tasker.aravindweb.in/api/rooms/" + courseId + "/students/invite").addHeaders("X-Auth-Token", token)
+//                        .addJSONObjectBody(jsonObject)
+//                        .build().getAsString(new StringRequestListener() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        recyclerView.setAdapter(new StudentItemRecyclerViewAdapter(
+//                                getContext(), courseId
+//                        ));
+//
+//                        tv.setText("");
+//                        Toast.makeText(context, "Invite Code Sent!", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(ANError anError) {
+//                        recyclerView.setAdapter(new StudentItemRecyclerViewAdapter(
+//                                getContext(), courseId
+//                        ));
+//                        tv.setText("");
+//
+//                        Toast.makeText(context, anError.getErrorCode() + " Error", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            });
+//        }else{
+//            // student
+//            b.setVisibility(View.GONE);
+//            tv.setVisibility(View.GONE);
+//
+//        }
         return viewparent;
     }
 }
