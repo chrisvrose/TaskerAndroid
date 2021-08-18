@@ -1,4 +1,4 @@
-package in.aravindweb.tasker.ui.course;
+package in.aravindweb.tasker;
 
 import android.os.Bundle;
 import android.util.Log;

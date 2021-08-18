@@ -25,21 +25,21 @@ public class MaterialData {
 
     private static final int COUNT = 25;
 
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createPlaceholderItem(i));
-        }
-    }
+//    static {
+//        // Add some sample items.
+//        for (int i = 1; i <= COUNT; i++) {
+//            addItem(createPlaceholderItem(i));
+//        }
+//    }
 
     private static void addItem(MaterialItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static MaterialItem createPlaceholderItem(int position) {
-        return new MaterialItem(String.valueOf(position), "Item " + position, makeDetails(position));
-    }
+//    private static MaterialItem createPlaceholderItem(int position) {
+//        return new MaterialItem(String.valueOf(position), "Item " + position, makeDetails(position));
+//    }
 
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
@@ -57,11 +57,19 @@ public class MaterialData {
         public final String id;
         public final String content;
         public final String details;
+        public final String createdAt;
 
-        public MaterialItem(String id, String content, String details) {
+        /**
+         * Create a material with details
+         * @param id
+         * @param content
+         * @param details
+         */
+        public MaterialItem(String id, String content, String details,String createdAt) {
             this.id = id;
             this.content = content;
             this.details = details;
+            this.createdAt = createdAt;
         }
 
         @Override

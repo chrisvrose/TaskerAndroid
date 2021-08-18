@@ -1,30 +1,39 @@
 package in.aravindweb.tasker;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.OpenableColumns;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ANRequest;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-import in.aravindweb.tasker.data.MaterialData;
+import in.aravindweb.util.FileUtils;
 
 /**
  * A fragment representing a list of Items.
@@ -37,6 +46,10 @@ public class MaterialFragment extends Fragment {
     private int mColumnCount = 1;
     private String courseName = "", courseId = "";
 
+    private String filePickedUri = null;
+    private Uri filePickedUriuri = null;
+
+    private static int PICKFILE_RESULT_CODE = 25;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,9 +58,9 @@ public class MaterialFragment extends Fragment {
     public MaterialFragment() {
     }
 
-    public MaterialFragment(String cn,String ci){
-        courseId=ci;
-        courseName=cn;
+    public MaterialFragment(String cn, String ci) {
+        courseId = ci;
+        courseName = cn;
     }
 
 
@@ -88,9 +101,90 @@ public class MaterialFragment extends Fragment {
         ));
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         String token = sharedPref.getString("token", "-");
-        boolean isTeacher = sharedPref.getBoolean("isTeacher",false);
+        boolean isTeacher = sharedPref.getBoolean("isTeacher", false);
 
         Button b = viewparent.findViewById(R.id.button2);
+        if (isTeacher) {
+            b.setOnClickListener(v -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Upload Material");
+                Button fb = new Button(getContext());
+                fb.setText("Pick file");
+//                registerForActivityResult()
+                ;
+                fb.setOnClickListener(lv -> {
+                    Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+                    chooseFile.setType("*/*");
+                    chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+                    startActivityForResult(chooseFile, PICKFILE_RESULT_CODE);
+                });
+
+                final EditText input = new EditText(getContext());
+                input.setHint("Enter Description");
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                LinearLayout dialogLayout = new LinearLayout(getContext());
+                dialogLayout.addView(fb);
+                dialogLayout.addView(input);
+
+                builder.setView(dialogLayout);
+                builder.setPositiveButton("UPLOAD", (dv, which) -> {
+                    if (filePickedUri == null) {
+                        Toast.makeText(getContext(), "Please pick a file", Toast.LENGTH_SHORT).show();
+                    } else {
+                        try {
+//                            String path = FileUtils.getPath(getContext(),filePickedUriuri);
+//                            File file = new File(filePickedUriuri.toString());//FileUtils.getFile(getContext(), filePickedUriuri);
+                            InputStream s = getContext().getContentResolver().openInputStream(filePickedUriuri);
+                            File tempFile = File.createTempFile("olkliksdfhglosdiertlkushdfgsj", "jav");
+                            OutputStream ss = new FileOutputStream(tempFile, false);
+
+                            int n;
+                            byte[] buffer = new byte[1024];
+                            while ((n = s.read(buffer)) > -1) {
+                                ss.write(buffer, 0, n);   // Don't allow any extra bytes to creep in, final write
+                            }
+                            ss.close();
+                            AndroidNetworking
+                                    .upload("https://tasker.aravindweb.in/api/upload/60dc9411a7135f005d218ebc/materials")
+                                    .addMultipartFile("file", tempFile)
+
+                                    .addHeaders("description", input.getText().toString())
+                                    .addHeaders("X-Auth-Token", token)
+                                    .build().getAsString(new StringRequestListener() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                                    tempFile.deleteOnExit();
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+                                    anError.printStackTrace();
+                                    Toast.makeText(getContext(), "Error" + anError.getErrorCode(), Toast.LENGTH_SHORT).show();
+                                    tempFile.deleteOnExit();
+
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+//            AndroidNetworking.upload("").addMultipartFile()
+//                        Log.d("upload.Picked", data.getData().toString());
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", (dv, which) -> {
+
+                });
+
+                builder.show();
+
+            });
+        } else {
+            b.setVisibility(View.GONE);
+        }
 //        TextView tv = viewparent.findViewById(R.id.editTextTextMultiLine);
 //        if(isTeacher) {
 //            // teacher
@@ -139,5 +233,15 @@ public class MaterialFragment extends Fragment {
 //
 //        }
         return viewparent;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICKFILE_RESULT_CODE) {
+            filePickedUri = data.getData().getPath();
+            filePickedUriuri = data.getData();
+
+        }
     }
 }

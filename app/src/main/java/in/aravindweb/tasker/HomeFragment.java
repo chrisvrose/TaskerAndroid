@@ -37,7 +37,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import in.aravindweb.tasker.ui.course.CourseActivity;
 import in.aravindweb.util.misc;
 
 /**
@@ -79,14 +78,14 @@ public class HomeFragment extends Fragment {
 //             v.findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
             // create classroom
             fb.setOnClickListener(myview->{
-//                something has to pop up for email
+                // something has to pop up for email
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Create class");
 
-// Set up the input
+                // Set up the input
                 final EditText input = new EditText(getContext());
                 input.setHint("Enter Class Name");
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT );
                 builder.setView(input);
 

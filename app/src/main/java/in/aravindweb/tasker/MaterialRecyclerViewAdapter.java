@@ -64,8 +64,9 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
                         JSONObject j = ar.getJSONObject(i);
                         String id = j.getString("_id");
                         String material = j.getString("material");
-                        String name = j.getString("name");
-                        MaterialItem item = new MaterialItem(id,material,name);
+                        String desc = j.getString("description");
+                        String createdAt = j.getString("createdAt");
+                        MaterialItem item = new MaterialItem(id,material,desc,createdAt);
                         x.add(item);
                     }
                     setVal(x);
@@ -94,7 +95,7 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
+        holder.mIdView.setText(mValues.get(position).details);
         holder.mContentView.setText(mValues.get(position).content);
     }
 
