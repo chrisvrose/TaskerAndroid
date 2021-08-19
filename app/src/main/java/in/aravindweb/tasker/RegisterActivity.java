@@ -135,27 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
 
-//                firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (!task.isSuccessful()) {
-//                                    runOnUiThread(new Runnable() {
-//                                        public void run() {
-//                                            Toast.makeText(RegisterActivity.this, "Authentication Error", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//                                    progressDialog.dismiss();
-//                                } else {
-//                                    FirebaseUser firebaseUser = task.getResult().getUser();
-//                                    if (firebaseUser != null) {
-//
-//                                        saveUserToDatabase(firebaseUser, firstName, lastName);
-//
-//                                    }
-//                                }
-//                            }
-//                        })
+
             }
         });
     }
