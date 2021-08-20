@@ -25,7 +25,6 @@ import com.androidnetworking.interfaces.StringRequestListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import in.aravindweb.tasker.data.AssignmentData.AssignmentItem;
 
@@ -33,15 +32,12 @@ import in.aravindweb.tasker.databinding.FragmentAssignmentlinkBinding;
 
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link AssignmentItem}.
@@ -128,7 +124,7 @@ public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<Assignme
             holder.mDownloadButton.getContext().startActivity(browserIntent);
         });
         holder.mSubsButton.setOnClickListener((v)->{
-            Intent Cake = new Intent(holder.mSubsButton.getContext(),Submissions.class);
+            Intent Cake = new Intent(holder.mSubsButton.getContext(), SubmissionsActivity.class);
             Cake.putExtra("roomId",roomid);
             Cake.putExtra("resId",holder.mItem.id);
             holder.mDownloadButton.getContext().startActivity(Cake);

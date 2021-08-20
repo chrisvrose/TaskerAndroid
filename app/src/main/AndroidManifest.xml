@@ -15,8 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskerAndroid">
+        <service
+            android:name=".NotifJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            ></service>
+
         <activity
-            android:name=".Submissions"
+            android:name=".SubmissionsActivity"
             android:exported="true" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity" />

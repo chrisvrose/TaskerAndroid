@@ -8,6 +8,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,6 +63,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ((TextView)navigationView.getHeaderView(0).findViewById(R.id.navbarDisplayName)).setOnClickListener(this::openProfilePage);
         ((TextView)navigationView.getHeaderView(0).findViewById(R.id.navbarEmailImage)).setOnClickListener(this::openProfilePage);
         ((TextView)navigationView.getHeaderView(0).findViewById(R.id.navbarEmail)).setText("Bopooo");
+
+
+        // two identical jobs -> 1 will run periodically (15min approx)
+        JobScheduler jobScheduler = (JobScheduler) getApplicationContext()
+                .getSystemService(JOB_SCHEDULER_SERVICE);
+        ComponentName componentName = new ComponentName(this,
+        NotifJobService.class);
+        JobInfo jobInfoObj = new JobInfo.Builder(1, componentName)
+                                .setPeriodic(10000).setRequiredNetworkType(
+                        JobInfo.NETWORK_TYPE_NOT_ROAMING)
+                                .build();
+        jobScheduler.schedule(jobInfoObj);
+
+        // same as 1, but will run immediately with similar context
+        JobInfo jobInfoObj2 = new JobInfo.Builder(2, componentName)
+                .setMinimumLatency(1000).setRequiredNetworkType(
+                        JobInfo.NETWORK_TYPE_NOT_ROAMING)
+                .build();
+
+        jobScheduler.schedule(jobInfoObj2);
+
+        Log.d("Scheduled","it");
 
         updateProfileDetails();
     }

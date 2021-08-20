@@ -30,9 +30,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import in.aravindweb.tasker.data.SubmissionData;
-
-public class Submissions extends AppCompatActivity {
+public class SubmissionsActivity extends AppCompatActivity {
     String roomId;
     String resId;
     String authToken;
@@ -66,9 +64,9 @@ public class Submissions extends AppCompatActivity {
             fb.setVisibility(View.GONE);
         }else{
             fb.setOnClickListener(v-> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Submissions.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SubmissionsActivity.this);
                 builder.setTitle("Upload Material");
-                Button fb = new Button(Submissions.this);
+                Button fb = new Button(SubmissionsActivity.this);
                 fb.setText("Pick file");
 //                registerForActivityResult()
                 ;
@@ -79,24 +77,24 @@ public class Submissions extends AppCompatActivity {
                     startActivityForResult(chooseFile, PICKFILE_RESULT_CODE);
                 });
 
-                final EditText input = new EditText(Submissions.this);
+                final EditText input = new EditText(SubmissionsActivity.this);
                 input.setHint("Enter Description");
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
 
-                LinearLayout dialogLayout = new LinearLayout(Submissions.this);
+                LinearLayout dialogLayout = new LinearLayout(SubmissionsActivity.this);
                 dialogLayout.addView(fb);
                 dialogLayout.addView(input);
 
                 builder.setView(dialogLayout);
                 builder.setPositiveButton("UPLOAD", (dv, which) -> {
                     if (filePickedUriuri == null) {
-                        Toast.makeText(Submissions.this, "Please pick a file", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SubmissionsActivity.this, "Please pick a file", Toast.LENGTH_SHORT).show();
                     } else {
                         // this is the worst, create a temp file, copy the IS into that file then upload it
                         try {
 //                            String path = FileUtils.getPath(getContext(),filePickedUriuri);
 //                            File file = new File(filePickedUriuri.toString());//FileUtils.getFile(getContext(), filePickedUriuri);
-                            InputStream s = Submissions.this.getContentResolver().openInputStream(filePickedUriuri);
+                            InputStream s = SubmissionsActivity.this.getContentResolver().openInputStream(filePickedUriuri);
                             File tempFile = File.createTempFile("olkliksdfhglosdiertlkushdfgsj", "jav");
                             OutputStream ss = new FileOutputStream(tempFile, false);
 
@@ -116,7 +114,7 @@ public class Submissions extends AppCompatActivity {
                                     .build().getAsString(new StringRequestListener() {
                                 @Override
                                 public void onResponse(String response) {
-                                    Toast.makeText(Submissions.this, "Done", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SubmissionsActivity.this, "Done", Toast.LENGTH_SHORT).show();
                                     tempFile.deleteOnExit();
                                     rva.makeData();
                                 }
@@ -124,7 +122,7 @@ public class Submissions extends AppCompatActivity {
                                 @Override
                                 public void onError(ANError anError) {
                                     anError.printStackTrace();
-                                    Toast.makeText(Submissions.this, "Error" + anError.getErrorCode(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SubmissionsActivity.this, "Error" + anError.getErrorCode(), Toast.LENGTH_SHORT).show();
                                     tempFile.deleteOnExit();
                                     rva.makeData();
 
