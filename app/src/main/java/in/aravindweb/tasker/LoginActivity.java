@@ -21,6 +21,9 @@ import com.androidnetworking.interfaces.StringRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Logging in
+ */
 public class LoginActivity extends AppCompatActivity {
     Button loginbutton;
     @Override
@@ -140,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * // TODO set proper error
+     * Show error message
      */
     void forError(){
         Toast.makeText(this, "Authentication Error", Toast.LENGTH_SHORT).show();

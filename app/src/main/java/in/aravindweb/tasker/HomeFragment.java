@@ -64,9 +64,6 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         final LinearLayout linearScrollLayout = (LinearLayout) v.findViewById(R.id.scroll_view_linear_layout);
-//        ((Button)v.findViewById(R.id.button)).setOnClickListener(x->{
-//            Toast.makeText(getContext(), "NO", Toast.LENGTH_SHORT).show();
-//        });
 
 
         SharedPreferences sharedPref = getContext().getSharedPreferences(getString(R.string.tokenLocation), Context.MODE_PRIVATE);
@@ -75,7 +72,6 @@ public class HomeFragment extends Fragment {
         FloatingActionButton fb =v.findViewById(R.id.floatingActionButton);
 
         if(isTeacher){
-//             v.findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
             // create classroom
             fb.setOnClickListener(myview->{
                 // something has to pop up for email
@@ -89,7 +85,7 @@ public class HomeFragment extends Fragment {
                 input.setInputType(InputType.TYPE_CLASS_TEXT );
                 builder.setView(input);
 
-// Set up the buttons
+                // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -234,10 +230,8 @@ public class HomeFragment extends Fragment {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         LinearLayout.LayoutParams imageViewLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         imageView.setLayoutParams(imageViewLayoutParams);
-//            imageView.setImageResource(course.getImageId());
 
         imageView.setImageResource(l.get((int) (Math.random() * l.size())));
-//            Glide.with(getContext()).load("https://tasker.aravindweb.in/images/classroom_dark.jpg").into(imageView);
 
         LinearLayout linearLayout = new LinearLayout(getActivity());
         LinearLayout.LayoutParams linearLayoutLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -272,7 +266,7 @@ public class HomeFragment extends Fragment {
         courseTeacher.setLines(1);
         courseTeacher.setEllipsize(TextUtils.TruncateAt.END);
         courseTeacher.setTextAppearance(getActivity(), R.style.fontForCourseTeacherOnCard);
-        courseTeacher.setText(/*teacher.getDisplayName()*/"");
+        courseTeacher.setText("");
 
 
         linearLayout.addView(courseName, courseNameLayoutParams);
@@ -286,7 +280,7 @@ public class HomeFragment extends Fragment {
         cardViewLayoutParams.rightMargin = misc.DPtoPX(13, getActivity());
         cardView.setLayoutParams(cardViewLayoutParams);
         cardView.setClickable(true);
-//            cardView.setForeground(getSelectedItemDrawable());
+
         cardView.setRadius(misc.DPtoPX(8, getActivity()));
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,13 +299,5 @@ public class HomeFragment extends Fragment {
 
         scroll.addView(cardView, cardViewLayoutParams);
 
-    }
-
-    private Drawable getSelectedItemDrawable() {
-        int[] attrs = new int[]{R.attr.selectableItemBackground};
-        TypedArray ta = getActivity().obtainStyledAttributes(attrs);
-        Drawable selectedItemDrawable = ta.getDrawable(0);
-        ta.recycle();
-        return selectedItemDrawable;
     }
 }

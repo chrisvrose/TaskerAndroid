@@ -7,6 +7,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+/**
+ * Miscellaneous tools for programming
+ */
 public class misc {
     /**
      * Return two if one is non-null
@@ -44,7 +47,12 @@ public class misc {
         Glide.with(c).load(uri).into(v);
     }
 
-
+    /**
+     * DP to PX
+     * @param dps
+     * @param activity
+     * @return
+     */
     public static int DPtoPX(int dps, Activity activity){
         return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dps, activity.getResources().getDisplayMetrics()));
     }

@@ -25,6 +25,9 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+/**
+ * Registration activity
+ */
 public class RegisterActivity extends AppCompatActivity {
 
 
@@ -155,16 +158,5 @@ public class RegisterActivity extends AppCompatActivity {
     void forError(){
         Toast.makeText(this, "Registration Error", Toast.LENGTH_SHORT).show();
     }
-//    private void saveUserToDatabase(FirebaseUser firebaseUser, String firstName, String lastName){
-//
-//        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference databaseUser = database.child("users");
-//        DatabaseReference newVal = databaseUser.push();
-//        User user = new User(newVal.getKey(), firebaseUser.getUid(), firebaseUser.getEmail(), firstName + " " + lastName, Arrays.asList(User.Role.STUDENT));
-//        newVal.setValue(user);
-//        Toast.makeText(this, "You have been registered successfully.", Toast.LENGTH_LONG).show();
-//        FirebaseAuth.getInstance().signOut();
-//        progressDialog.dismiss();
-//        launchLoginActivity();
-//    }
+
 }

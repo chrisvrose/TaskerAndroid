@@ -30,6 +30,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Submissions for an assignment
+ */
 public class SubmissionsActivity extends AppCompatActivity {
     String roomId;
     String resId;
@@ -60,7 +63,7 @@ public class SubmissionsActivity extends AppCompatActivity {
         fb = findViewById(R.id.floatingActionButton2);
 
         if(isTeacher) {
-            // not teacjher
+            // not teacher - disable it
             fb.setVisibility(View.GONE);
         }else{
             fb.setOnClickListener(v-> {
@@ -68,8 +71,6 @@ public class SubmissionsActivity extends AppCompatActivity {
                 builder.setTitle("Upload Material");
                 Button fb = new Button(SubmissionsActivity.this);
                 fb.setText("Pick file");
-//                registerForActivityResult()
-                ;
                 fb.setOnClickListener(lv -> {
                     Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
                     chooseFile.setType("*/*");
@@ -92,8 +93,6 @@ public class SubmissionsActivity extends AppCompatActivity {
                     } else {
                         // this is the worst, create a temp file, copy the IS into that file then upload it
                         try {
-//                            String path = FileUtils.getPath(getContext(),filePickedUriuri);
-//                            File file = new File(filePickedUriuri.toString());//FileUtils.getFile(getContext(), filePickedUriuri);
                             InputStream s = SubmissionsActivity.this.getContentResolver().openInputStream(filePickedUriuri);
                             File tempFile = File.createTempFile("olkliksdfhglosdiertlkushdfgsj", "jav");
                             OutputStream ss = new FileOutputStream(tempFile, false);
@@ -132,8 +131,6 @@ public class SubmissionsActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-//            AndroidNetworking.upload("").addMultipartFile()
-//                        Log.d("upload.Picked", data.getData().toString());
                     }
                 });
 
@@ -148,7 +145,7 @@ public class SubmissionsActivity extends AppCompatActivity {
         rv = findViewById(R.id.list);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rva=new SubmissionRecyclerViewAdapter(this,roomId,resId);
-
+        // assign the adapter
         rv.setAdapter(rva);
 
     }

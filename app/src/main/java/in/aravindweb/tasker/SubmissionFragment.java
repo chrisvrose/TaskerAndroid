@@ -19,9 +19,7 @@ import in.aravindweb.tasker.data.SubmissionData;
  */
 public class SubmissionFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
 
     /**
@@ -29,16 +27,6 @@ public class SubmissionFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public SubmissionFragment() {
-    }
-
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static SubmissionFragment newInstance(int columnCount) {
-        SubmissionFragment fragment = new SubmissionFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override

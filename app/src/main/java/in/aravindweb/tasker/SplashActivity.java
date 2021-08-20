@@ -16,7 +16,9 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 
-
+/**
+ * Loading screen
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         String token = sharedPref.getString("token","-");
+        // yen guru API helu @aravinda
         AndroidNetworking.get("https://tasker.aravindweb.in/api/auth/")
                 .addHeaders("X-Auth-Token",token)
                 .build()

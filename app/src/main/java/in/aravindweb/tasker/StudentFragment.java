@@ -33,9 +33,7 @@ import in.aravindweb.tasker.data.StudentData;
  */
 public class StudentFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private String courseName = "", courseId = "";
 
@@ -52,7 +50,6 @@ public class StudentFragment extends Fragment {
         courseName=cn;
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static StudentFragment newInstance(int columnCount) {
         StudentFragment fragment = new StudentFragment();
@@ -111,6 +108,7 @@ public class StudentFragment extends Fragment {
                     e.printStackTrace();
                 }
                 // teacher wanting to add student
+                // todo backend has crashed!!! @aravinda
                 AndroidNetworking.post("https://tasker.aravindweb.in/api/rooms/" + courseId + "/students/invite").addHeaders("X-Auth-Token", token)
                         .addJSONObjectBody(jsonObject)
                         .build().getAsString(new StringRequestListener() {

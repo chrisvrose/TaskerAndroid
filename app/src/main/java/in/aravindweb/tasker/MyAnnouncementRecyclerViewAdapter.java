@@ -34,7 +34,7 @@ import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link AnnouncementItem}.
- * TODO: Replace the implementation with code for your data type.
+ *
  */
 public class MyAnnouncementRecyclerViewAdapter extends RecyclerView.Adapter<MyAnnouncementRecyclerViewAdapter.ViewHolder> {
 
@@ -91,7 +91,7 @@ public class MyAnnouncementRecyclerViewAdapter extends RecyclerView.Adapter<MyAn
 
         mValues = new ArrayList<>();//items;
     }
-//    public MyAnnouncementRecyclerViewAdapter(List<>)
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -104,7 +104,7 @@ public class MyAnnouncementRecyclerViewAdapter extends RecyclerView.Adapter<MyAn
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).content);
         holder.mContentView.setText(mValues.get(position).date);
-        //mValues.get(position).id
+
         if(isTeacher)
         holder.mDeleteButton.setOnClickListener(v->{
             String url = "https://tasker.aravindweb.in/api/rooms/"+roomid+"/announcements/"+mValues.get(position).id;

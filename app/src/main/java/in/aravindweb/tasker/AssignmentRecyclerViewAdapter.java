@@ -41,7 +41,7 @@ import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link AssignmentItem}.
- * TODO: Replace the implementation with code for your data type.
+ *
  */
 public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<AssignmentRecyclerViewAdapter.ViewHolder> {
 

@@ -89,7 +89,6 @@ public class AssignmentFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new AssignmentRecyclerViewAdapter(
-                //laceholderContent.ITEMS
                 getContext(), courseId
         ));
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.tokenLocation), Context.MODE_PRIVATE);
@@ -103,8 +102,7 @@ public class AssignmentFragment extends Fragment {
                 builder.setTitle("Upload Assignment");
                 Button fb = new Button(getContext());
                 fb.setText("Pick file");
-//                registerForActivityResult()
-                ;
+
                 fb.setOnClickListener(lv -> {
                     Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
                     chooseFile.setType("*/*");
@@ -125,10 +123,7 @@ public class AssignmentFragment extends Fragment {
                     if (filePickedUriuri == null) {
                         Toast.makeText(getContext(), "Please pick a file", Toast.LENGTH_SHORT).show();
                     } else {
-                        // this is the worst, create a temp file, copy the IS into that file then upload it
                         try {
-//                            String path = FileUtils.getPath(getContext(),filePickedUriuri);
-//                            File file = new File(filePickedUriuri.toString());//FileUtils.getFile(getContext(), filePickedUriuri);
                             InputStream s = getContext().getContentResolver().openInputStream(filePickedUriuri);
                             File tempFile = File.createTempFile("olkliksdfhglosdiertlkushdfgsj", "jav");
                             OutputStream ss = new FileOutputStream(tempFile, false);
@@ -167,8 +162,6 @@ public class AssignmentFragment extends Fragment {
                             e.printStackTrace();
                         }
 
-//            AndroidNetworking.upload("").addMultipartFile()
-//                        Log.d("upload.Picked", data.getData().toString());
                     }
                 });
 
@@ -184,53 +177,6 @@ public class AssignmentFragment extends Fragment {
             b.setVisibility(View.GONE);
         }
 
-//        TextView tv = viewparent.findViewById(R.id.editTextTextMultiLine);
-//        if(isTeacher) {
-//            // teacher
-////            tv.setHint("Student Email");
-//
-//            b.setOnClickListener(v -> {
-//                JSONObject jsonObject = new JSONObject();
-//                try {
-//                    JSONArray x = new JSONArray();
-//                    x.put(tv.getText().toString());
-//                    jsonObject.put("studentEmails", x);
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                // teacher wanting to add student
-//                AndroidNetworking.post("https://tasker.aravindweb.in/api/rooms/" + courseId + "/students/invite").addHeaders("X-Auth-Token", token)
-//                        .addJSONObjectBody(jsonObject)
-//                        .build().getAsString(new StringRequestListener() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        recyclerView.setAdapter(new StudentItemRecyclerViewAdapter(
-//                                getContext(), courseId
-//                        ));
-//
-//                        tv.setText("");
-//                        Toast.makeText(context, "Invite Code Sent!", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(ANError anError) {
-//                        recyclerView.setAdapter(new StudentItemRecyclerViewAdapter(
-//                                getContext(), courseId
-//                        ));
-//                        tv.setText("");
-//
-//                        Toast.makeText(context, anError.getErrorCode() + " Error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            });
-//        }else{
-//            // student
-//            b.setVisibility(View.GONE);
-//            tv.setVisibility(View.GONE);
-//
-//        }
         return viewparent;
     }
 

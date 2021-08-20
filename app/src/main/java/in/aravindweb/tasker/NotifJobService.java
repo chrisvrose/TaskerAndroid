@@ -49,6 +49,7 @@ public class NotifJobService extends JobService {
 
         NotificationManager manager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // if newer then aravind
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_LOW);
 
@@ -60,23 +61,11 @@ public class NotifJobService extends JobService {
             notificationChannel.enableVibration(true);
             manager.createNotificationChannel(notificationChannel);
         }
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-//                .setContentTitle(("Tasker"))
-//                .setContentText(("Tasker Running"))
-//                .setContentIntent(contentPendingIntent)
-//                .setSmallIcon(R.drawable.ic_assignment_icon)
-//                .setPriority(NotificationCompat.PRIORITY_HIGH)
-//                .setDefaults(NotificationCompat.DEFAULT_ALL)
-//                .setAutoCancel(true);
 
-//        manager.notify(0, builder.build());
-//        Toast.makeText(this,"Hi!",Toast.LENGTH_SHORT).show();
-//        return false;
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         authToken = sharedPref.getString("token", "-");
         isTeacher = sharedPref.getBoolean("isTeacher", false);
         latestAnDate = sharedPref.getString("notiflatestdate", "");
-//        sharedPref.edit().putString()
         AndroidNetworking.get("https://tasker.aravindweb.in/api/rooms").addHeaders("X-Auth-Token", authToken).build().getAsJSONArray(new JSONArrayRequestListener() {
             @Override
             public void onResponse(JSONArray response) {
@@ -90,7 +79,6 @@ public class NotifJobService extends JobService {
                     }
                 }
                 setLength(l);
-//                int i=0;
                 for (int i=0;i<l;i++) {
                     String x = ids.get(i);
                     int finalI = i;
@@ -128,7 +116,6 @@ public class NotifJobService extends JobService {
                                 }
                             }
                             doneLength(finalI,sharedPref);
-//                            i++;
                         }
 
                         @Override

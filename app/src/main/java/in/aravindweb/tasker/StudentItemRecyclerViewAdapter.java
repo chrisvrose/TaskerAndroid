@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link StudentItem}.
- * TODO: Replace the implementation with code for your data type.
+ *
  */
 public class StudentItemRecyclerViewAdapter extends RecyclerView.Adapter<StudentItemRecyclerViewAdapter.ViewHolder> {
 
@@ -42,9 +42,11 @@ public class StudentItemRecyclerViewAdapter extends RecyclerView.Adapter<Student
     String roomid;
     boolean isTeacher;
 
-//    public StudentItemRecyclerViewAdapter(List<StudentItem> items) {
-//        mValues = items;
-//    }
+    /**
+     * New Adapter
+     * @param c Context for getting shared Preferences
+     * @param roomid Room ID for the fragment
+     */
     public StudentItemRecyclerViewAdapter(Context c, String roomid){
         SharedPreferences sharedPref = c.getSharedPreferences(c.getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         authToken = sharedPref.getString("token","-");

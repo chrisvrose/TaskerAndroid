@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link MaterialItem}.
- * TODO: Replace the implementation with code for your data type.
+ *
  */
 public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRecyclerViewAdapter.ViewHolder> {
 
@@ -41,9 +41,6 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
     String roomid;
     boolean isTeacher;
 
-//    public MaterialRecyclerViewAdapter(List<MaterialItem> items) {
-//        mValues = items;
-//    }
     public MaterialRecyclerViewAdapter(Context c, String roomid){
         SharedPreferences sharedPref = c.getSharedPreferences(c.getString(R.string.tokenLocation), Context.MODE_PRIVATE);
         authToken = sharedPref.getString("token","-");
@@ -99,7 +96,6 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).details);
-//        holder.mContentView.setText(mValues.get(position).content);
         holder.mbutton.setOnClickListener(v->{
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mValues.get(position).content));
             holder.mbutton.getContext().startActivity(browserIntent);
@@ -115,14 +111,12 @@ public class MaterialRecyclerViewAdapter extends RecyclerView.Adapter<MaterialRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
-//        public final TextView mContentView;
         public MaterialItem mItem;
         public Button mbutton;
 
         public ViewHolder(FragmentMaterialBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
-//            mContentView = binding.content;
             mbutton = binding.button5;
         }
 

@@ -30,13 +30,15 @@ import com.google.android.material.navigation.NavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Main entry screen on login
+ */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private AppBarConfiguration mAppBarConfiguration;
     private NavigationView navigationView;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavController navController;
-//    private TextView x=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AndroidNetworking.get("https://tasker.aravindweb.in/api/auth").addHeaders("X-Auth-Token",token).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject res) {
-//                navigationView.getHeaderView(0
                 Log.d("res.output",res.toString());
                 try {
                     String name = res.getString("name");

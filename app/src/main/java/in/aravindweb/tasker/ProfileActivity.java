@@ -20,6 +20,9 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Profile file
+ */
 public class ProfileActivity extends AppCompatActivity {
     EditText fname;
     EditText lname;
@@ -98,9 +101,6 @@ public class ProfileActivity extends AppCompatActivity {
             });
         });
 
-        deleteAccount.setOnClickListener(v->{
-            // DELETE /api/users
-        });
     }
 
 
